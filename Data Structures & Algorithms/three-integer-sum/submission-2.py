@@ -1,0 +1,22 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+        for i in range(len(nums) - 2):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            target = -nums[i]
+            j = i + 1
+            k = len(nums) - 1
+            while j < k:
+                twoSum = nums[j] + nums[k]
+                if twoSum == target:
+                    res.append([nums[i], nums[j], nums[k]])
+                    j += 1
+                    while j < k and nums[j] == nums[j-1]: 
+                        j += 1
+                elif twoSum < target:
+                    j += 1
+                else:
+                    k -= 1
+        return res
